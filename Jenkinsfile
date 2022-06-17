@@ -1,3 +1,4 @@
+//Declarative
 pipeline {
 	agent any
 	stages {
@@ -13,8 +14,20 @@ pipeline {
 		}
 		stage ("Integration Test"){
 			steps  {
-				echo "Test"
+				echo "Integration Test"
 			}
+		}
+	} post {
+		always {
+			echo 'Awsome I run always'
+		}
+
+		success {
+			echo 'I run when you are successful'
+
+		}
+		failure {
+			echo 'I run when you are failure'
 		}
 	}
 }
