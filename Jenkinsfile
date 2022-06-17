@@ -2,7 +2,7 @@
 pipeline {
 	agent any
 	stages {
-		stage ('Build'){
+		stage ("Build"){
 			steps  {
 				echo "Build"
 			}
@@ -19,15 +19,15 @@ pipeline {
 		}
 	} post {
 		always {
-			echo 'Awsome I run always'
+			echo "Awsome I run always"
 		}
 
 		success {
-			echo 'I run when you are successful'
+			echo "I run when you are successful"
 
 		}
 		failure {
-			echo 'I run when you are failure'
+			echo "I run when you are failure"
 		}
 	}
 }
