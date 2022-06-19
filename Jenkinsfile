@@ -33,6 +33,32 @@ pipeline {
 				sh "mvn failsafe:integration-test failsafe:verify"
 			}
 		}
+
+		stage ("Package"){
+			steps  {
+				sh "mvn package -DskipTests"
+			}
+		}
+
+		stage (build docker image) {
+			steps {
+				script{
+					dockerImage = docker.build("mohammedoufi/currency-devops:${env.BUILD_TAG}")
+				}
+			}
+		}
+
+		stage (push docker image) {
+			steps {
+				script{
+					docker.withRegistry('','c2117250-625a-42c9-b88c-159b6836b6aa'){
+						dockerImage.push();
+						dockerImage.push('latest');
+					}
+					
+				}
+			}
+		}
 	} 
 	
 	post {
