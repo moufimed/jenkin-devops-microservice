@@ -40,7 +40,7 @@ pipeline {
 			}
 		}
 
-		stage (build docker image) {
+		stage ("build docker image") {
 			steps {
 				script{
 					dockerImage = docker.build("mohammedoufi/currency-devops:${env.BUILD_TAG}")
@@ -48,7 +48,7 @@ pipeline {
 			}
 		}
 
-		stage (push docker image) {
+		stage ("push docker image") {
 			steps {
 				script{
 					docker.withRegistry('','c2117250-625a-42c9-b88c-159b6836b6aa'){
